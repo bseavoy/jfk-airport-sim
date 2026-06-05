@@ -154,13 +154,16 @@ def run_validation(csv_path: str) -> dict:
 
         peak_marker = " ◀" if h in peak_hours else "  "
 
-        def _fv(v, fmt=".1f"):
-            return f"{v:{fmt}}" if not np.isnan(v) else "  ---"
+        def _fv(v):
+            return f"{v:6.1f}" if not np.isnan(v) else "   ---"
+
+        def _fdelta(v):
+            return f"{v:+5.1f}" if not np.isnan(v) else "  ---"
 
         print(
-            f"  {h:02d}:xx  {_fv(ati):>6}  {_fv(sti):>6}  {_fv(dti):>+5.1f}  "
-            f" {_fv(sto):>6}  {_fv(ssto):>6}  {_fv(dto):>+5.1f}  "
-            f"{xwt:>5.1f}  {rwy:>5.1f} {peak_marker}"
+            f"  {h:02d}:xx  {_fv(ati)}  {_fv(sti)}  {_fdelta(dti)}  "
+            f" {_fv(sto)}  {_fv(ssto)}  {_fdelta(dto)}  "
+            f"{xwt:5.1f}  {rwy:5.1f} {peak_marker}"
         )
 
     print("=" * W)

@@ -1,0 +1,68 @@
+[
+  {
+    "date": "2024-06-03",
+    "file": "2024-06-03_jfk.csv",
+    "total_flights": 696,
+    "arrivals": 348,
+    "departures": 348,
+    "actual_taxi_in_mean": 9.51,
+    "actual_taxi_in_std": 6.32,
+    "actual_taxi_out_mean": 24.54,
+    "actual_taxi_out_std": 7.43
+  },
+  {
+    "date": "2024-06-17",
+    "file": "2024-06-17_jfk.csv",
+    "total_flights": 707,
+    "arrivals": 353,
+    "departures": 354,
+    "actual_taxi_in_mean": 11.23,
+    "actual_taxi_in_std": 7.49,
+    "actual_taxi_out_mean": 27.69,
+    "actual_taxi_out_std": 10.37
+  },
+  {
+    "date": "2024-07-01",
+    "file": "2024-07-01_jfk.csv",
+    "total_flights": 704,
+    "arrivals": 352,
+    "departures": 352,
+    "actual_taxi_in_mean": 14.54,
+    "actual_taxi_in_std": 10.87,
+    "actual_taxi_out_mean": 27.14,
+    "actual_taxi_out_std": 10.43
+  },
+  {
+    "date": "2024-07-16",
+    "file": "2024-07-16_jfk.csv",
+    "total_flights": 700,
+    "arrivals": 350,
+    "departures": 350,
+    "actual_taxi_in_mean": 13.78,
+    "actual_taxi_in_std": 9.47,
+    "actual_taxi_out_mean": 39.12,
+    "actual_taxi_out_std": 24.84
+  },
+  {
+    "date": "2024-08-01",
+    "file": "2024-08-01_jfk.csv",
+    "total_flights": 708,
+    "arrivals": 354,
+    "departures": 354,
+    "actual_taxi_in_mean": 16.85,
+    "actual_taxi_in_std": 14.65,
+    "actual_taxi_out_mean": 44.9,
+    "actual_taxi_out_std": 25.85
+  },
+  {
+    "date": "2024-08-16",
+    "file": "2024-08-16_jfk.csv",
+    "total_flights": 706,
+    "arrivals": 353,
+    "departures": 353,
+    "actual_taxi_in_mean": 12.37,
+    "actual_taxi_in_std": 8.84,
+    "actual_taxi_out_mean": 28.46,
+    "actual_taxi_out_std": 8.92
+  }
+]
