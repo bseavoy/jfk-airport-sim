@@ -1,0 +1,154 @@
+{
+  "airport": "JFK",
+  "name": "John F. Kennedy International Airport",
+  "icao": "KJFK",
+  "iata": "JFK",
+
+  "runways": {
+    "RWY_4L": {
+      "length_ft": 8400, "width_ft": 150,
+      "primary_use": "arrival", "wake_turbulence_group": "mixed"
+    },
+    "RWY_4R": {
+      "length_ft": 8400, "width_ft": 150,
+      "primary_use": "mixed", "wake_turbulence_group": "mixed"
+    },
+    "RWY_13L": {
+      "length_ft": 10000, "width_ft": 150,
+      "primary_use": "departure", "wake_turbulence_group": "mixed"
+    },
+    "RWY_13R": {
+      "length_ft": 14572, "width_ft": 200,
+      "primary_use": "mixed", "wake_turbulence_group": "heavy"
+    },
+    "RWY_22L": {
+      "length_ft": 8400, "width_ft": 150,
+      "primary_use": "departure", "wake_turbulence_group": "mixed"
+    },
+    "RWY_22R": {
+      "length_ft": 8400, "width_ft": 150,
+      "primary_use": "arrival", "wake_turbulence_group": "mixed"
+    },
+    "RWY_31L": {
+      "length_ft": 14572, "width_ft": 200,
+      "primary_use": "arrival", "wake_turbulence_group": "heavy"
+    },
+    "RWY_31R": {
+      "length_ft": 10000, "width_ft": 150,
+      "primary_use": "departure", "wake_turbulence_group": "mixed"
+    }
+  },
+
+  "terminals": {
+    "T1": {
+      "gate_count": 11,
+      "gate_prefix": "1",
+      "description": "Terminal 1 - International (Air France, Lufthansa, Korean Air, Japan Airlines)",
+      "taxi_in_mean_min": 14.5,
+      "taxi_in_std_min": 6.5,
+      "taxi_out_mean_min": 26.0,
+      "taxi_out_std_min": 10.5,
+      "compatible_aircraft": ["narrow", "wide", "heavy"],
+      "requires_crossing": true,
+      "crossing_id": "cross_22R"
+    },
+    "T4": {
+      "gate_count": 30,
+      "gate_prefix": "4",
+      "description": "Terminal 4 - Delta, Air France, Virgin Atlantic, KLM (international hub)",
+      "taxi_in_mean_min": 12.5,
+      "taxi_in_std_min": 6.0,
+      "taxi_out_mean_min": 23.5,
+      "taxi_out_std_min": 10.0,
+      "compatible_aircraft": ["narrow", "wide", "heavy"],
+      "requires_crossing": false,
+      "crossing_id": null
+    },
+    "T5": {
+      "gate_count": 26,
+      "gate_prefix": "5",
+      "description": "Terminal 5 - JetBlue hub",
+      "taxi_in_mean_min": 11.0,
+      "taxi_in_std_min": 5.5,
+      "taxi_out_mean_min": 21.5,
+      "taxi_out_std_min": 9.5,
+      "compatible_aircraft": ["narrow", "wide"],
+      "requires_crossing": true,
+      "crossing_id": "cross_22R"
+    },
+    "T7": {
+      "gate_count": 6,
+      "gate_prefix": "7",
+      "description": "Terminal 7 - British Airways",
+      "taxi_in_mean_min": 12.0,
+      "taxi_in_std_min": 6.0,
+      "taxi_out_mean_min": 22.0,
+      "taxi_out_std_min": 9.5,
+      "compatible_aircraft": ["narrow", "wide", "heavy"],
+      "requires_crossing": true,
+      "crossing_id": "cross_22R"
+    },
+    "T8": {
+      "gate_count": 30,
+      "gate_prefix": "8",
+      "description": "Terminal 8 - American Airlines (domestic + international)",
+      "taxi_in_mean_min": 13.5,
+      "taxi_in_std_min": 6.5,
+      "taxi_out_mean_min": 24.0,
+      "taxi_out_std_min": 10.5,
+      "compatible_aircraft": ["narrow", "wide", "heavy"],
+      "requires_crossing": true,
+      "crossing_id": "cross_31L"
+    }
+  },
+
+  "runway_crossings": {
+    "cross_22R": {
+      "description": "Crossing of active arrival runway 22R (north side terminals to 22L departure)",
+      "capacity": 2,
+      "occupancy_min": 1.5
+    },
+    "cross_31L": {
+      "description": "Crossing of active arrival runway 31L (T8/AA area to 31R departure)",
+      "capacity": 2,
+      "occupancy_min": 2.0
+    }
+  },
+
+  "separation_minima": {
+    "heavy_behind_heavy_sec": 90,
+    "heavy_behind_large_sec": 60,
+    "large_behind_heavy_sec": 120,
+    "large_behind_large_sec": 60,
+    "small_behind_heavy_sec": 180,
+    "small_behind_large_sec": 90,
+    "default_separation_sec": 90
+  },
+
+  "capacity": {
+    "nominal_arrival_rate_per_hour": 44,
+    "nominal_departure_rate_per_hour": 44,
+    "gdp_arrival_rates": {"light": 36, "moderate": 26, "severe": 15}
+  },
+
+  "taxi_distribution": {
+    "use_lognormal": true,
+    "taxi_in_lognorm_sigma": 0.455,
+    "taxi_out_lognorm_sigma": 0.380
+  },
+
+  "taxi_benchmarks": {
+    "taxi_in_mean_min": 13.0,
+    "taxi_in_std_min": 7.0,
+    "taxi_out_mean_min": 22.5,
+    "taxi_out_std_min": 10.5
+  },
+
+  "departure_max_taxi_queue": 18,
+  "pushback_clearance_mean_min": 6.0,
+  "pushback_clearance_std_min": 2.5,
+  "gate_holdout_mean_min": 10.0,
+  "gate_holdout_std_min": 6.0,
+  "turnaround_narrow_min": 45,
+  "turnaround_wide_min": 75
+}
