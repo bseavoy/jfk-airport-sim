@@ -144,6 +144,14 @@
     "taxi_out_std_min": 9.5
   },
 
+  "hourly_taxi_out_scale": {
+    "0": 0.65, "1": 0.65, "2": 0.65, "3": 0.65, "4": 0.65, "5": 0.65,
+    "6": 0.72,
+    "7": 0.82,
+    "8": 0.92,
+    "22": 0.90,
+    "23": 0.78
+  },
   "departure_max_taxi_queue": 25,
   "taxi_out_congestion_alpha": 0.45,
   "congestion_departure_queue_threshold": 8,
