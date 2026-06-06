@@ -17,6 +17,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from jfk_sim.simulation import AirportSimulation
+from jfk_sim.config import load_ground_programs
 
 W = 74  # output width
 
@@ -27,14 +28,17 @@ def _pct(vals, p):
     return float(np.percentile(vals, p))
 
 
-def run_validation(csv_path: str) -> dict:
+def run_validation(csv_path: str, gdp_path: str = None) -> dict:
     p = Path(csv_path)
     if not p.exists():
         print(f"Missing: {csv_path}")
         sys.exit(1)
 
+    programs = load_ground_programs(gdp_path) if gdp_path else []
+    if programs:
+        print(f"Ground programs: {gdp_path} ({len(programs)} program(s))")
     print(f"Running sim for {p.name}...")
-    sim = AirportSimulation(seed=42)
+    sim = AirportSimulation(seed=42, ground_programs=programs)
     sim.load_schedule(csv_path)
     metrics = sim.run()
 
@@ -171,7 +175,10 @@ def run_validation(csv_path: str) -> dict:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: PYTHONPATH=. python scripts/validate_real_day.py <day_file.csv>")
-        sys.exit(1)
-    run_validation(sys.argv[1])
+    import argparse as _ap
+    parser = _ap.ArgumentParser()
+    parser.add_argument("csv", help="Path to real-day CSV file")
+    parser.add_argument("--gdp", metavar="FILE",
+                        help="Ground programs JSON (e.g. data/ground_programs/2024-07-16_jfk.json)")
+    args = parser.parse_args()
+    run_validation(args.csv, gdp_path=args.gdp)

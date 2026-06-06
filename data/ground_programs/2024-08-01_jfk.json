@@ -1,0 +1,36 @@
+{
+  "_comment": "JFK 2024-08-01 severe afternoon GDP. Sudden severe onset at 14:xx (departure threshold ~890 min). Sustained 15:xx-22:xx at 67-74 min taxi-out. Late phase extended and at higher intensity to match 19-21:xx actuals (~69-72 min).",
+  "_calibration": "Phases in simulation threshold time. Aug-01 is more severe than Jul-16 and shows less gradual buildup — likely a ground stop that converted to a GDP.",
+  "programs": [
+    {
+      "type": "GS",
+      "description": "Ground stop onset — sudden severe restriction, weather-related runway shutdown",
+      "start_min": 880,
+      "end_min": 1020,
+      "dep_clearance_hold_mean_min": 42,
+      "dep_clearance_hold_std_min": 20,
+      "dep_clearance_hold_max_min": 120,
+      "arr_rate_per_hour": 22
+    },
+    {
+      "type": "GDP",
+      "description": "Peak GDP — sustained severe restrictions, largest backlog",
+      "start_min": 1020,
+      "end_min": 1260,
+      "dep_clearance_hold_mean_min": 52,
+      "dep_clearance_hold_std_min": 22,
+      "dep_clearance_hold_max_min": 140,
+      "arr_rate_per_hour": 18
+    },
+    {
+      "type": "GDP",
+      "description": "Late GDP — weather improving but backlog remains severe through late evening",
+      "start_min": 1260,
+      "end_min": 1440,
+      "dep_clearance_hold_mean_min": 50,
+      "dep_clearance_hold_std_min": 22,
+      "dep_clearance_hold_max_min": 130,
+      "arr_rate_per_hour": 26
+    }
+  ]
+}
