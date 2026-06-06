@@ -17,7 +17,9 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from jfk_sim.simulation import AirportSimulation
-from jfk_sim.config import load_ground_programs
+from jfk_sim.config import load_config, load_ground_programs
+
+CONFIG_PATH = str(Path(__file__).parent.parent / "data" / "jfk_config.json")
 
 W = 74  # output width
 
@@ -38,7 +40,8 @@ def run_validation(csv_path: str, gdp_path: str = None) -> dict:
     if programs:
         print(f"Ground programs: {gdp_path} ({len(programs)} program(s))")
     print(f"Running sim for {p.name}...")
-    sim = AirportSimulation(seed=42, ground_programs=programs)
+    cfg = load_config(CONFIG_PATH)
+    sim = AirportSimulation(config=cfg, seed=42, ground_programs=programs)
     sim.load_schedule(csv_path)
     metrics = sim.run()
 

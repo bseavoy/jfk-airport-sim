@@ -150,5 +150,7 @@
   "gate_holdout_mean_min": 10.0,
   "gate_holdout_std_min": 6.0,
   "turnaround_narrow_min": 45,
-  "turnaround_wide_min": 75
+  "turnaround_wide_min": 75,
+  "arr_schedule_padding_mean_min": 7.1,
+  "arr_schedule_padding_std_min": 3.0
 }

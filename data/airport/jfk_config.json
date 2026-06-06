@@ -144,11 +144,13 @@
     "taxi_out_std_min": 9.5
   },
 
-  "departure_max_taxi_queue": 18,
+  "departure_max_taxi_queue": 13,
   "pushback_clearance_mean_min": 6.0,
   "pushback_clearance_std_min": 2.5,
   "gate_holdout_mean_min": 10.0,
   "gate_holdout_std_min": 6.0,
   "turnaround_narrow_min": 45,
-  "turnaround_wide_min": 75
+  "turnaround_wide_min": 75,
+  "arr_schedule_padding_mean_min": 7.1,
+  "arr_schedule_padding_std_min": 3.0
 }
