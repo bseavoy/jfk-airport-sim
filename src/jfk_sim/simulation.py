@@ -155,7 +155,12 @@ class AirportSimulation:
         cfg = self.config
         term_cfg = cfg.terminals.get(flight.terminal)
 
-        yield self.env.timeout(max(0.0, flight.scheduled_min - self.env.now))
+        # Back-calculate a randomised wheels-on time from the scheduled gate arrival.
+        # This introduces realistic variance in actual landing time vs schedule so
+        # A0 (gate on-time arrival) is non-trivially distributed around 50%.
+        taxi_in_offset = self._taxi_in(term_cfg)
+        wheels_on_trigger = max(0.0, flight.scheduled_min - taxi_in_offset)
+        yield self.env.timeout(max(0.0, wheels_on_trigger - self.env.now))
 
         program = self._active_program(self.env.now)
         if program is not None:
@@ -226,6 +231,7 @@ class AirportSimulation:
         with self.runway_pool.dep_taxi_permits.request() as permit:
             yield permit
             gate_hold_time = self.env.now - gate_hold_start
+            pushback_min = self.env.now  # actual gate pushback (permit acquired)
 
             # --- First taxi segment: gate → runway crossing point ----------
             # Split taxi into pre-crossing and post-crossing segments.
@@ -282,6 +288,7 @@ class AirportSimulation:
             actual_min=actual_wheels_off,
             taxi_min=taxi_out + clearance_hold,   # clearance hold is part of taxi time
             gate_delay_min=gate_hold_time,
+            pushback_min=pushback_min,
             runway_wait_min=runway_wait,
             crossing_wait_min=crossing_wait,
             terminal=flight.terminal,

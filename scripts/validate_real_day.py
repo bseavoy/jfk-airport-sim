@@ -53,6 +53,16 @@ def run_validation(csv_path: str, gdp_path: str = None) -> dict:
     crossing_waits = [r.crossing_wait_min for r in metrics.records
                       if r.operation == "DEP" and r.crossing_wait_min > 0]
 
+    # --- A0 / D0 rates ---
+    arr_recs = [r for r in metrics.records if r.operation == "ARR"]
+    dep_recs = [r for r in metrics.records if r.operation == "DEP"]
+    arr_ot = df[(df["operation"] == "ARR") & df["actual_min"].notna() & df["scheduled_min"].notna()]
+    dep_ot = df[(df["operation"] == "DEP") & df["actual_min"].notna() & df["scheduled_min"].notna()]
+    real_a0 = float((arr_ot["actual_min"] <= arr_ot["scheduled_min"]).mean()) if len(arr_ot) else 0.0
+    real_d0 = float((dep_ot["actual_min"] <= dep_ot["scheduled_min"]).mean()) if len(dep_ot) else 0.0
+    sim_a0 = sum(1 for r in arr_recs if r.gate_in_min is not None and r.gate_in_min <= r.scheduled_min) / len(arr_recs) if arr_recs else 0.0
+    sim_d0 = sum(1 for r in dep_recs if r.pushback_min is not None and r.pushback_min <= r.scheduled_min) / len(dep_recs) if dep_recs else 0.0
+
     def _fmt_delta(v):
         return f"{v:+.2f}" if abs(v) >= 0.01 else " 0.00"
 
@@ -106,6 +116,9 @@ def run_validation(csv_path: str, gdp_path: str = None) -> dict:
     if cross.get("mean", 0) > 0:
         print(f"  {'crossing wait mean':<32} {'(sim only)':>8}  {cross.get('mean', 0):>10.2f}")
         print(f"  {'crossing wait p95':<32} {'(sim only)':>8}  {cross.get('p95', 0):>10.2f}")
+    print("-" * W)
+    print(f"  {'A0 rate (gate arr on time)':<32} {real_a0:>8.1%}  {sim_a0:>10.1%}  {sim_a0 - real_a0:>+7.1%}")
+    print(f"  {'D0 rate (gate dep on time)':<32} {real_d0:>8.1%}  {sim_d0:>10.1%}  {sim_d0 - real_d0:>+7.1%}")
 
     # --- Per-hour breakdown ---
     by_hour = metrics.by_hour()

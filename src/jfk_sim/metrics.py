@@ -20,6 +20,7 @@ class FlightRecord:
     gate_delay_min: float = 0.0
     runway_wait_min: float = 0.0
     gate_hold_min: float = 0.0
+    pushback_min: float | None = None   # DEP: actual gate pushback time
     crossing_wait_min: float = 0.0   # time held waiting for runway crossing clearance
     terminal: str = ""
     weight_class: str = ""
@@ -69,6 +70,12 @@ class SimMetrics:
 
         crossing_waits = [r.crossing_wait_min for r in departures if r.crossing_wait_min > 0]
 
+        a0_count = sum(1 for r in arrivals if r.gate_in_min is not None and r.gate_in_min <= r.scheduled_min)
+        a0_rate = a0_count / len(arrivals) if arrivals else 0.0
+
+        d0_count = sum(1 for r in departures if r.pushback_min is not None and r.pushback_min <= r.scheduled_min)
+        d0_rate = d0_count / len(departures) if departures else 0.0
+
         return {
             "flights_simulated": len(self.records),
             "arrivals": len(arrivals),
@@ -78,6 +85,8 @@ class SimMetrics:
             "arrival_runway_wait": _stats([r.runway_wait_min for r in arrivals]),
             "departure_runway_wait": _stats([r.runway_wait_min for r in departures]),
             "crossing_wait": _stats(crossing_waits),
+            "a0_rate": round(a0_rate, 4),
+            "d0_rate": round(d0_rate, 4),
             "gate_utilisation": {
                 k: round(float(np.mean(v)), 3) for k, v in gate_util.items()
             },
