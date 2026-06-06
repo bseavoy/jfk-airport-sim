@@ -11,7 +11,7 @@
     },
     "RWY_4R": {
       "length_ft": 8400, "width_ft": 150,
-      "primary_use": "mixed", "wake_turbulence_group": "mixed"
+      "primary_use": "arrival", "wake_turbulence_group": "mixed"
     },
     "RWY_13L": {
       "length_ft": 10000, "width_ft": 150,
@@ -19,7 +19,7 @@
     },
     "RWY_13R": {
       "length_ft": 14572, "width_ft": 200,
-      "primary_use": "mixed", "wake_turbulence_group": "heavy"
+      "primary_use": "arrival", "wake_turbulence_group": "heavy"
     },
     "RWY_22L": {
       "length_ft": 8400, "width_ft": 150,
@@ -35,7 +35,7 @@
     },
     "RWY_31R": {
       "length_ft": 10000, "width_ft": 150,
-      "primary_use": "departure", "wake_turbulence_group": "mixed"
+      "primary_use": "arrival", "wake_turbulence_group": "mixed"
     }
   },
 
@@ -127,7 +127,7 @@
 
   "capacity": {
     "nominal_arrival_rate_per_hour": 44,
-    "nominal_departure_rate_per_hour": 44,
+    "nominal_departure_rate_per_hour": 28,
     "gdp_arrival_rates": {"light": 36, "moderate": 26, "severe": 15}
   },
 
@@ -144,7 +144,7 @@
     "taxi_out_std_min": 9.5
   },
 
-  "departure_max_taxi_queue": 13,
+  "departure_max_taxi_queue": 25,
   "pushback_clearance_mean_min": 6.0,
   "pushback_clearance_std_min": 2.5,
   "gate_holdout_mean_min": 10.0,
