@@ -145,6 +145,23 @@
   },
 
   "departure_max_taxi_queue": 25,
+  "taxi_out_congestion_alpha": 0.45,
+  "congestion_departure_queue_threshold": 8,
+  "gate_hold_poll_min": 1.0,
+  "airline_padding_overrides": {
+    "DL": [8.5, 3.5],
+    "B6": [5.0, 2.5],
+    "AA": [7.0, 3.0],
+    "UA": [7.5, 3.0],
+    "AF": [5.5, 2.5],
+    "LH": [5.5, 2.5],
+    "BA": [5.0, 2.5],
+    "VS": [5.0, 2.5],
+    "KE": [5.0, 2.0],
+    "JL": [5.0, 2.0],
+    "EK": [5.0, 2.0],
+    "QR": [5.0, 2.0]
+  },
   "pushback_clearance_mean_min": 6.0,
   "pushback_clearance_std_min": 2.5,
   "gate_holdout_mean_min": 10.0,
